@@ -14,7 +14,7 @@ Multi-functional SMTP client that can handle organizational emails and send mail
 
 ## Features
 - [ ] Flexible configuration that supports commenting. _(begin line with //)_
-- [ ] Buidling asynchronous base that may support multithreading later.
+- [ ] Asynchronous base that can possibly support multithreading.
 - [ ] Deal with multiple SMTP servers.
 - [x] Handle with multiple emails, departments.
 - [ ] Embed images in email bodies.
