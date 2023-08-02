@@ -11,7 +11,8 @@ Multi-functional SMTP client that can handle organizational emails and send mail
 ## Features
 - [ ] Buidling asynchronous base that may support multithreading later.
 - [ ] Deal with multiple SMTP servers.
-- [ ] Handle with multiple emails, departments.
-- [ ] Generate report of emails sent based on department.
+- [x] Handle with multiple emails, departments.
+- [ ] Embed images in email bodies.
 - [ ] Establish a TCP server to receive requests from organization different departments at a time.
 - [ ] Ability to receive requests using MSSQL.
+- [ ] Generate report of emails sent based on department.
