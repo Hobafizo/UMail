@@ -8,6 +8,10 @@ Multi-functional SMTP client that can handle organizational emails and send mail
 </p>
 <br>
 
+## Dependencies
+- **.NET 7.0**
+- **Newtonsoft.Json**
+
 ## Features
 - [ ] Flexible configuration that supports commenting. _(begin line with //)_
 - [ ] Buidling asynchronous base that may support multithreading later.
