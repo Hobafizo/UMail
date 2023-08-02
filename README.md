@@ -1,6 +1,6 @@
 # UMail  _(Work In Progress)_
 
-Multi-functional SMTP client that can handle organization emails and send mails based on departments.
+Multi-functional SMTP client that can handle organizational emails and send mails based on departments.
 
 <br>
 <p align="center">
