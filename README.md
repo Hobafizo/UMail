@@ -9,7 +9,7 @@ Multi-functional SMTP client that can handle organizational emails and send mail
 <br>
 
 ## Features
-- [ ] Flexible configuration that that supports commenting. _(begin line with //)_
+- [ ] Flexible configuration that supports commenting. _(begin line with //)_
 - [ ] Buidling asynchronous base that may support multithreading later.
 - [ ] Deal with multiple SMTP servers.
 - [x] Handle with multiple emails, departments.
