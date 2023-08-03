@@ -4,7 +4,7 @@ Multi-functional SMTP client that can handle organizational emails and send mail
 
 <br>
 <p align="center">
-  <img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" height="400">
+  <img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" height="300">
 </p>
 <br>
 
