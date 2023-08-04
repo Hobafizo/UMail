@@ -20,4 +20,4 @@ Multi-functional SMTP client that can handle organizational emails and send mail
 - [ ] Embed images in email bodies.
 - [ ] Receive email requests through a TCP server, can commit plenty of requests from different connections at a time.
 - [ ] Receive email requests using MSSQL.
-- [ ] Generate report of emails sent based on department.
+- [ ] Generate reports of email activities based on department.
