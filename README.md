@@ -18,6 +18,6 @@ Multi-functional SMTP client that can handle organizational emails and send mail
 - [ ] Deals with multiple SMTP servers.
 - [x] Handles multiple emails and organization departments.
 - [ ] Embed images in email bodies.
-- [ ] Establish a TCP server to receive requests from organization different departments at a time.
-- [ ] Ability to receive requests using MSSQL.
+- [ ] Receive email requests through a TCP server, can commit plenty of requests from different connections at a time.
+- [ ] Receive email requests using MSSQL.
 - [ ] Generate report of emails sent based on department.
