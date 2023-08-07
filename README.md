@@ -10,7 +10,7 @@ Multi-functional SMTP client that can handle organizational emails and send mail
 
 ## Dependencies
 - **.NET 7.0**
-- **Newtonsoft.Json**
+- **Newtonsoft.Json (13.0.3)**
 
 ## Features
 - [ ] Flexible configuration that supports commenting. _(begin line with //)_
