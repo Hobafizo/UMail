@@ -16,9 +16,12 @@ namespace UMail.Network
         private bool m_listen;
         private string m_host;
         private int m_port;
+        private IPEndPoint m_endpoint;
         private TcpListener m_listener;
 
         public bool Listenning { get { return m_listen; } }
+        public string Host { get{return m_host; } }
+        public int Port { get { return m_port; } }
         #endregion
 
         #region Methods
@@ -28,7 +31,8 @@ namespace UMail.Network
             m_host = host;
             m_port = port;
 
-            m_listener = new TcpListener(IPAddress.Parse(m_host), m_port);
+            m_endpoint = new IPEndPoint(IPAddress.Parse(m_host), m_port);
+            m_listener = new TcpListener(m_endpoint);
         }
 
         ~ServerListener()
@@ -82,7 +86,9 @@ namespace UMail.Network
                 if (m_listen)
                 {
                     Socket socket = await m_listener.AcceptSocketAsync();
-                    Logger.Write(ConsoleColor.White, "New socket is open!");
+
+                    ServerContext client = new ServerContext(this, socket);
+                    client.BeginReceive();
 
                     Accept();
                 }

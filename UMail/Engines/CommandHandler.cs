@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace UMail.Engines
 {
-    internal class CommandHandler
+    public static class CommandHandler
     {
+        #region Members
+
+        #endregion
+
+        #region Methods
+
+        #endregion
     }
 }

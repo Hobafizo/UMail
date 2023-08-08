@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using UMail.Misc;
 using UMail.Network;
 
 namespace UMail.Engines
@@ -56,7 +57,8 @@ namespace UMail.Engines
             if (MainServer == null)
             {
                 MainServer = new ServerListener(host, port);
-                MainServer.Start();
+                if (MainServer.Start())
+                    Logger.Write(LogType.Main, ConsoleColor.Cyan, "Server is listenning on {0}:{1}", host, port);
             }
         }
         #endregion
