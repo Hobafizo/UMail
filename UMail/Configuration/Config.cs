@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UMail.Config.Entities;
+using UMail.Configuration.Entities;
 using UMail.IO;
 using UMail.Misc;
 using UMail.Services;
 using Newtonsoft.Json;
 
-namespace UMail.Config
+namespace UMail.Configuration
 {
     internal static class Config
     {
-        #region Constant Settings
-        private const string    ConfigFile = "settings.json",
-                                EmailFile  = "emails.txt";
+        #region Constants
+        private const string    ConfigFile = "config/settings.json",
+                                EmailFile  = "config/emails.txt";
         #endregion
 
         #region Members
@@ -23,6 +23,9 @@ namespace UMail.Config
         private static Dictionary<string, EmailService> m_emails = new Dictionary<string, EmailService>();
 
         public static bool Loaded { get; private set; }
+        public static Settings Settings { get { return m_settings; } }
+        private static KeyValuePair<string, EmailService>[] Emails { get { return m_emails.ToArray(); } }
+        private static int EmailCount => m_emails.Count;
         #endregion
 
         #region Methods
@@ -45,7 +48,7 @@ namespace UMail.Config
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error occurred on loading Config.");
+                Logger.Error(LogType.Config, ex, "Error occurred on loading.");
             }
         }
 
@@ -68,7 +71,7 @@ namespace UMail.Config
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error occurred on preparing first use Config.");
+                Logger.Error(LogType.Config, ex, "Error occurred on preparing first use config.");
             }
         }
 
@@ -101,7 +104,7 @@ namespace UMail.Config
                             if (!m_emails.ContainsKey(service.Department))
                                 m_emails.Add(service.Department, service);
                             else
-                                Logger.Warn(LogType.Config, "[{0}] department email service is duplicated, first match only will count.", service.Department);
+                                Logger.OnLog(LogProperties.Warning, LogType.Config, "[{0}] department email service is duplicated, first match only will count.", false, service.Department);
                         }
                     }
                 }
@@ -111,25 +114,16 @@ namespace UMail.Config
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error occurred on loading email services.");
+                Logger.Error(LogType.Config, ex, "Error occurred on loading email services.");
             }
-        }
-
-        public static EmailService GetEmailService(string department)
-        {
-            return m_emails.TryGetValue(department, out EmailService service) ? service : null;
         }
         #endregion
 
         #region Getters
-        private static KeyValuePair<string, EmailService>[] Emails
+        public static EmailService? GetEmailService(string department)
         {
-            get
-            {
-                return m_emails.ToArray();
-            }
+            return m_emails.TryGetValue(department, out EmailService? service) ? service : null;
         }
-        private static int EmailCount => m_emails.Count;
         #endregion
     }
 }

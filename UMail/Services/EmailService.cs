@@ -4,10 +4,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using UMail.Engines;
+using UMail.Configuration;
+using UMail.Configuration.Entities;
+using UMail.Misc;
 
 namespace UMail.Services
 {
@@ -62,6 +66,24 @@ namespace UMail.Services
         {
         }
 
+        public void SendEmail(string sender_name, string recipient_mail, string recipient_name, string subject, string body, bool html = false)
+        {
+            MailAddress from = new MailAddress(Email, sender_name);
+            MailAddress recipient = new MailAddress(recipient_mail, recipient_name);
+
+            MailMessage message = new MailMessage(from, recipient);
+            message.Subject = subject;
+            message.IsBodyHtml = html;
+
+            if (html)
+                message.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(body, null, MediaTypeNames.Text.Html));
+            else
+                message.Body = body;
+
+            m_client.SendAsync(message, Department);
+        }
+        #endregion
+
         #region Event Handlers
         private void OnSendCompleted(object sender, AsyncCompletedEventArgs e)
         {
@@ -76,20 +98,10 @@ namespace UMail.Services
             {
                 FailedCount++;
                 GlobalMgr.SetTitle(failed: 1);
+
+                if (e.Error != null)
+                    Logger.OnLog(LogProperties.Error, e.Error);
             }
-        }
-        #endregion
-
-        public void SendEmail(string sender_name, string recipient_mail, string recipient_name, string subject, string body)
-        {
-            MailAddress from = new MailAddress(Email, sender_name);
-            MailAddress recipient = new MailAddress(recipient_mail, recipient_name);
-
-            MailMessage message = new MailMessage(from, recipient);
-            message.Subject = subject;
-            message.Body = body;
-
-            m_client.SendAsync(message, Department);
         }
         #endregion
     }

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UMail.Config.Entities
+namespace UMail.Network
 {
-    public struct Settings
+    internal class ServerContext
     {
-        
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using UMail.Network;
 
 namespace UMail.Engines
 {
@@ -11,7 +12,7 @@ namespace UMail.Engines
     {
         #region Members
         private static int m_sentemailcount = 0, m_failedemailcount = 0;
-
+        
         public static int SentEmailCount
         {
             get
@@ -23,7 +24,6 @@ namespace UMail.Engines
                 Interlocked.Exchange(ref m_sentemailcount, value);
             }
         }
-
         public static int FailedEmailCount
         {
             get
@@ -35,6 +35,8 @@ namespace UMail.Engines
                 Interlocked.Exchange(ref m_failedemailcount, value);
             }
         }
+
+        public static ServerListener MainServer { get; private set; }
         #endregion
 
         #region Methods
@@ -47,6 +49,15 @@ namespace UMail.Engines
 
             string? appname = Assembly.GetExecutingAssembly().GetName().Name;
             Console.Title = string.Format("{0} (sent: {1} - failed: {2})", appname ?? "UMailer", SentEmailCount, FailedEmailCount);
+        }
+
+        public static void StartServerListen(string host, int port)
+        {
+            if (MainServer == null)
+            {
+                MainServer = new ServerListener(host, port);
+                MainServer.Start();
+            }
         }
         #endregion
     }
