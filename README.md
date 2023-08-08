@@ -13,9 +13,9 @@ Multi-functional SMTP client that can handle organizational emails and send mail
 - **Newtonsoft.Json (13.0.3)**
 
 ## Features
-- [ ] Flexible configuration that supports commenting. _(begin line with //)_
+- [x] Flexible configuration that supports commenting. _(begin line with //)_
 - [ ] Asynchronous base that can possibly support multithreading.
-- [ ] Deals with multiple SMTP servers.
+- [x] Deals with multiple SMTP servers.
 - [x] Handles multiple emails and organization departments.
 - [x] Embed images in email body.
 - [x] Send HTML body in emails.
